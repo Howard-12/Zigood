@@ -1,0 +1,5 @@
+ex
+.zig-cache
+note.md
+zig-out
+flake.lock

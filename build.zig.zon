@@ -1,0 +1,21 @@
+.{
+    .name = .zigood,
+    .version = "0.1.0",
+    .fingerprint = 0xc2990bb681125b3a,
+
+    .minimum_zig_version = "0.14.1",
+
+    .dependencies = .{
+        .zigwin32 = .{
+            .url = "https://github.com/marlersoft/zigwin32/archive/d21b419d808215e1f82605fdaddc49750bfa3bca.tar.gz",
+            .hash = "zigwin32-25.0.28-preview-AAAAAI0J-wP-8_KKo4Yjr33XLhVhlJmeagGUedByaOnX",
+        },
+
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+        "zigood.zig",
+    },
+}
