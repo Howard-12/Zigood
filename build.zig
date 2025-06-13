@@ -3,7 +3,8 @@ const std = @import("std");
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{
         .default_target = .{
-            .cpu_arch = .x86,
+            // .cpu_arch = .x86,
+            .cpu_arch = .x86_64,
             .os_tag = .windows,
         }
     });

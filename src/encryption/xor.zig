@@ -11,7 +11,7 @@ pub fn xorByOneKey(shellcode: []u8, key: u8) void {
 /// Encrypt the payload with a single byte key and the index of the payload
 pub fn xorByiKeys(shellcode: []u8, key: u8) void {
     for (shellcode, 0..shellcode.len) |*byte, i|{
-        byte.* ^= (key + @as(u8, @intCast(i)));
+        byte.* ^= (key +% @as(u8, @truncate(i)));
     }
 }
 
