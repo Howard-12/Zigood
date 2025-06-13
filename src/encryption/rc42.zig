@@ -4,7 +4,7 @@ const winapi = @import("std").os.windows;
 const std = @import("std");
 
 /// USTRING struct
-const USTRING = struct {
+const USTRING = extern struct {
     /// Length of the buffer
     Length: winapi.DWORD,
     ///
@@ -13,8 +13,8 @@ const USTRING = struct {
     Buffer: winapi.PVOID,
 };
 
-const x86_stdcall: std.builtin.CallingConvention = .{ .x86_stdcall = .{} };
-const fnsystemFunction032 = *const fn (data: *USTRING, key: *USTRING) callconv(x86_stdcall) NTSTATUS;
+const winapi_callconv= std.builtin.CallingConvention.winapi;
+const fnsystemFunction032 = *const fn (data: *USTRING, key: *USTRING) callconv(winapi_callconv) NTSTATUS;
 
 /// rc4 encrypt
 pub fn rc4EncryptionViSystemFunc032(pRc4Key: []u8, pPayloadData: []u8, dwRc4KeySize: winapi.DWORD, sPayloadSize: winapi.DWORD) bool {
