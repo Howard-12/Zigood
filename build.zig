@@ -31,6 +31,19 @@ pub fn build(b: *std.Build) void {
 
     b.installArtifact(exe);
 
+    // build dll
+    const windll = b.addSharedLibrary(.{
+        .name = "zigood",
+        .root_source_file = b.path("src/local_payload_execution/dll.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+
+    b.installArtifact(windll);
+
+    // exe linking
+    exe.linkLibrary(windll);
+
     // win32
     const zigwin32_dep = b.dependency("zigwin32", .{
         .target = target,
@@ -38,6 +51,7 @@ pub fn build(b: *std.Build) void {
     });
     exe.root_module.addImport("zigwin32", zigwin32_dep.module("win32"));
     zigood_mod.addImport("zigwin32", zigwin32_dep.module("win32"));
+    windll.root_module.addImport("zigwin32", zigwin32_dep.module("win32"));
 
 
     // doc
